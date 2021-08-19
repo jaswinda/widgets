@@ -1,8 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:widget/rowcolumn.dart';
-import 'package:widget/stateful.dart';
+import 'package:widget/random.dart';
+import 'package:widget/screens/classses_and_list.dart';
+import 'package:widget/screens/rowcolumn.dart';
+import 'package:widget/screens/stateful.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class Home extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.amber,
-          title: const Text('Pahilo Pahilo Appb'),
+          title: const Text('Flutter Course Level-1'),
         ),
         // ignore: deprecated_member_use
         body: Column(
@@ -30,6 +32,18 @@ class Home extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const StateFulExample()),
+              );
+            }),
+            myCustomizedButton(context, 'Classes and List', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ClassesAndList()),
+              );
+            }),
+            myCustomizedButton(context, 'Random', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Random()),
               );
             }),
           ],

@@ -40,9 +40,9 @@ class RowColumn extends StatelessWidget {
         // imageFromNetwork(),
         // imageFromAsset()
         // Expanded(child: desinedText('Text 1')),
-        // desinedText('textPassed'),
-        // desinedText('textPassed'),
-        // desinedText('textPassed'),
+        // Expanded(child: desinedText('text')),
+        // desinedText('text'),
+        // desinedText('text'),
         // Expanded(child: desinedText('Text 1')),
         // Expanded(child: desinedText('Text 2')),
         // Expanded(child: desinedText('Text 3')),
@@ -53,15 +53,15 @@ class RowColumn extends StatelessWidget {
         // designedContainer(Colors.orange),
         // designedContainer(Colors.black),
 
-        // designedContainer(Colors.red, 50.0, 50.0),
-        // designedContainer(Colors.amber, 100.0, 50.0),
-        // designedContainer(Colors.orange, 150.0, 50.0),
-        // designedContainer(Colors.blue, 200.0, 50.0),
-
-        designedContainer(Colors.red, 50.0, 25.0),
+        designedContainer(Colors.red, 50.0, 50.0),
         designedContainer(Colors.amber, 100.0, 50.0),
-        designedContainer(Colors.orange, 150.0, 75.0),
-        designedContainer(Colors.blue, 200.0, 100.0),
+        designedContainer(Colors.orange, 150.0, 50.0),
+        designedContainer(Colors.blue, 200.0, 50.0),
+
+        // designedContainer(Colors.red, 50.0, 25.0),
+        // designedContainer(Colors.amber, 100.0, 50.0),
+        // designedContainer(Colors.orange, 150.0, 75.0),
+        // designedContainer(Colors.blue, 200.0, 100.0),
 
         // Expanded(child: designedContainer(Colors.red)),
         // Expanded(child: designedContainer(Colors.amber)),
@@ -73,14 +73,11 @@ class RowColumn extends StatelessWidget {
 
   Widget columnExampleOne() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      // crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // desinedText('textPassed'),
-        // desinedText('textPassed'),
-        // desinedText('textPassed'),
-        // desinedText('textPassed'),
         // Text('dadsa'),
+        // desinedText('textPassed'),
         // Expanded(flex: 6, child: desinedText('Text 1')),
         // Expanded(child: desinedText('Text 1')),
         // Expanded(child: desinedText('Text 1')),
@@ -92,10 +89,15 @@ class RowColumn extends StatelessWidget {
         // designedContainer(Colors.orange),
         // designedContainer(Colors.black),
 
+        Expanded(child: designedContainer(Colors.red, 50.0, 50.0)),
+        Expanded(child: designedContainer(Colors.amber, 50.0, 50.0)),
+        Expanded(child: designedContainer(Colors.orange, 50.0, 50.0)),
+        Expanded(child: designedContainer(Colors.blue, 50.0, 50.0)),
+
         // designedContainer(Colors.red, 50.0, 50.0),
-        // designedContainer(Colors.amber, 100.0, 50.0),
-        // designedContainer(Colors.orange, 150.0, 50.0),
-        // designedContainer(Colors.blue, 200.0, 50.0),
+        // designedContainer(Colors.amber, 50.0, 100.0),
+        // designedContainer(Colors.orange, 50.0, 150.0),
+        // designedContainer(Colors.blue, 50.0, 200.0),
 
         // designedContainer(Colors.red, 50.0, 50.0),
         // designedContainer(Colors.amber, 100.0, 100.0),
@@ -107,7 +109,7 @@ class RowColumn extends StatelessWidget {
         // Expanded(child: designedContainer(Colors.orange)),
         // Expanded(child: designedContainer(Colors.blue)),
 
-        rowExampleOne(),
+        // rowExampleOne(),
 
         // imageFromAsset()
       ],

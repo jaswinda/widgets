@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:widget/services/products.dart';
 
 class Random extends StatefulWidget {
@@ -11,47 +14,30 @@ class Random extends StatefulWidget {
 class _RandomState extends State<Random> {
   bool isDataFetched = false;
 
-  List<String> list = [
-    'product-1',
-    'product-2',
-    'product-3',
-    'product-4',
-    'product-5',
-    'product-6',
-    'product-7',
-    'product-8',
-    'product-9',
-    'product-10',
-    'product-11',
-    'product-12',
-    'product',
-    'product',
-    'product',
-    'product',
-    'product',
-    'product',
-    'product',
-    'product',
-  ];
-
   List<Product> listProduct = [];
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1000), () {
-      setState(() {
-        listProduct = [
-          Product(
-              name: 'name',
-              description: 'description',
-              image:
-                  'https://static.remove.bg/remove-bg-web/bf554ca6716508caedc52f1ac289b1eec29b6734/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg',
-              price: '500.0'),
-        ];
-        isDataFetched = true;
-      });
+    listUpdate();
+  }
+
+  listUpdate() async {
+    listProduct = await fetchProduct();
+    setState(() {
+      isDataFetched = true;
     });
+  }
+
+  Future<List<Product>> fetchProduct() async {
+    final response =
+        await http.get(Uri.parse('https://fakestoreapi.com/products'));
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((data) => Product.fromJson(data)).toList();
+    } else {
+      throw Exception('Failed to load album');
+    }
   }
 
   @override
@@ -65,7 +51,7 @@ class _RandomState extends State<Random> {
                     children: listProduct
                         .map((prduct) => Center(
                             child: designedListWidgetTwo(
-                                prduct.name,
+                                prduct.title,
                                 prduct.image,
                                 prduct.description,
                                 prduct.price)))
@@ -112,7 +98,7 @@ class _RandomState extends State<Random> {
           backgroundImage: NetworkImage(productImage),
         ),
         subtitle: Text(productDesp),
-        trailing: Text(productPrice),
+        trailing: Text(productPrice.toString()),
         title: Text(productNam),
       ),
     );

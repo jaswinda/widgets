@@ -94,27 +94,30 @@ class _RandomState extends State<Random> {
         print(productNam);
       },
       child: Card(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              width: 300,
-              child: Image.network(
-                productImage,
-                fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                height: 200,
+                width: 300,
+                child: Image.network(
+                  productImage,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-            Text(
-              productNam,
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            Text(productDesp, style: TextStyle(fontSize: 20)),
-            Text(productPrice.toString(),
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold))
-          ],
+              Text(
+                productNam,
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              Text(productDesp, style: TextStyle(fontSize: 20)),
+              Text(productPrice.toString(),
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold))
+            ],
+          ),
         ),
         elevation: 10,
         shadowColor: Colors.blue,

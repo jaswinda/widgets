@@ -91,16 +91,51 @@ class _RandomState extends State<Random> {
       productNam, productImage, productDesp, productPrice) {
     return GestureDetector(
       onTap: () {
-        // print(product);
+        print(productNam);
       },
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(productImage),
+      child: Card(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: 300,
+              child: Image.network(
+                productImage,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Text(
+              productNam,
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            Text(productDesp, style: TextStyle(fontSize: 20)),
+            Text(productPrice.toString(),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold))
+          ],
         ),
-        subtitle: Text(productDesp),
-        trailing: Text(productPrice.toString()),
-        title: Text(productNam),
+        elevation: 10,
+        shadowColor: Colors.blue,
+        margin: EdgeInsets.all(10),
       ),
     );
   }
+  // Widget designedListWidgetTwo(
+  //     productNam, productImage, productDesp, productPrice) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // print(product);
+  //     },
+  //     child: ListTile(
+  //       leading: CircleAvatar(
+  //         backgroundImage: NetworkImage(productImage),
+  //       ),
+  //       subtitle: Text(productDesp),
+  //       trailing: Text(productPrice.toString()),
+  //       title: Text(productNam),
+  //     ),
+  //   );
+  // }
 }

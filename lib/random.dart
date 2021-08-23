@@ -24,6 +24,7 @@ class _RandomState extends State<Random> {
 
   listUpdate() async {
     listProduct = await fetchProduct();
+
     setState(() {
       isDataFetched = true;
     });
@@ -32,6 +33,7 @@ class _RandomState extends State<Random> {
   Future<List<Product>> fetchProduct() async {
     final response =
         await http.get(Uri.parse('https://fakestoreapi.com/products'));
+
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((data) => Product.fromJson(data)).toList();
@@ -45,18 +47,26 @@ class _RandomState extends State<Random> {
     return Scaffold(
         appBar: AppBar(),
         body: isDataFetched
-            ? SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: listProduct
-                        .map((prduct) => Center(
-                            child: designedListWidgetTwo(
-                                prduct.title,
-                                prduct.image,
-                                prduct.description,
-                                prduct.price)))
-                        .toList()),
-              )
+            ?
+            // SingleChildScrollView(
+            //     child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: listProduct
+            //             .map((prduct) => Center(
+            //                 child: designedListWidgetTwo(
+            //                     prduct.title,
+            //                     prduct.image,
+            //                     prduct.description,
+            //                     prduct.price)))
+            //             .toList()),
+            //   )
+            GridView.count(
+                crossAxisCount: 2,
+                children: listProduct
+                    .map((prduct) => Center(
+                        child: designedListWidgetTwo(prduct.title, prduct.image,
+                            prduct.description, prduct.price)))
+                    .toList())
             : const Center(
                 child: CircularProgressIndicator(),
               ));
@@ -98,22 +108,27 @@ class _RandomState extends State<Random> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container(
-                height: 200,
-                width: 300,
-                child: Image.network(
-                  productImage,
-                  fit: BoxFit.contain,
+              Expanded(
+                child: Container(
+                  child: Image.network(
+                    productImage,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Text(
                 productNam,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
-              Text(productDesp, style: TextStyle(fontSize: 20)),
+              Text(productDesp,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: TextStyle(fontSize: 12)),
               Text(productPrice.toString(),
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       color: Colors.green,
                       fontWeight: FontWeight.bold))
             ],

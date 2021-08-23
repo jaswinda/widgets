@@ -1,14 +1,20 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:widget/random.dart';
 import 'package:widget/screens/classses_and_list.dart';
+import 'package:widget/screens/pass_data.dart';
 import 'package:widget/screens/rowcolumn.dart';
 import 'package:widget/screens/stateful.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,17 +52,41 @@ class Home extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const Random()),
               );
             }),
+            Text(
+              'counter ' + count.toString(),
+              style: const TextStyle(fontSize: 24.0),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  increament();
+                },
+                child: Text('Increament')),
+            myCustomizedButton(context, 'Pass Data Screen', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PassData(
+                          count: count,
+                          increament: increament,
+                        )),
+              );
+            }),
           ],
         ));
   }
 
+  increament() {
+    setState(() {
+      count += 1;
+    });
+  }
+
   Widget myCustomizedButton(context, text, onpressed) {
     return Center(
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () {
           onpressed();
         },
-        color: Colors.blue,
         child: Text(text),
       ),
     );
